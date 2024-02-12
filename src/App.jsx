@@ -1,4 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
+
+import Layout from "./layout/Layout";
 import ProductsPages from "./pages/ProductsPages";
 import DetailsPage from "./pages/DetailsPage";
 import CheckoutPage from "./pages/CheckoutPage";
@@ -10,13 +12,15 @@ function App() {
   return (
     <CartProvider>
       <ProductProvider>
-        <Routes>
-          <Route index element={<Navigate to={"/products"} />} />
-          <Route path="/products" element={<ProductsPages />} />
-          <Route path="/products/:id" element={<DetailsPage />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
-          <Route path="/*" element={<PageNotFound />} />
-        </Routes>
+        <Layout>
+          <Routes>
+            <Route index element={<Navigate to={"/products"} />} />
+            <Route path="/products" element={<ProductsPages />} />
+            <Route path="/products/:id" element={<DetailsPage />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
+            <Route path="/*" element={<PageNotFound />} />
+          </Routes>
+        </Layout>
       </ProductProvider>
     </CartProvider>
   );
